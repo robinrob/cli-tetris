@@ -2,6 +2,8 @@ from src.movement_type import MovementType
 
 class ConsoleInterface:
     def get_player_move(self):
+        raw_input = self._get_player_input()
+
         if raw_input is "a":
             return MovementType.LEFT
         elif raw_input is "d":

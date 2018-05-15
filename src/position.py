@@ -2,7 +2,6 @@ import math
 
 
 class Position:
-
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -39,6 +38,8 @@ class Position:
     def rounded(self, places=0):
         return Position(round(self.x, places), round(self.y, places))
 
+    def add(self, other_point):
+        return Position(self.x + other_point.x, self.y + other_point.y)
 
-    def cross_product(self, other_point):
+    def dot_product(self, other_point):
         return Position(self.x * other_point.x, self.y * other_point.y)

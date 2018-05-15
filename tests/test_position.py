@@ -25,6 +25,14 @@ class PositionTestCase(unittest.TestCase):
 
         self.assertEquals(Position(7, 7), new_pos)
 
+
+    def test_should_translate_by_minus_3_minus_2(self):
+        pos = Position(1, 2)
+
+        new_pos = pos.translated(-3, -2)
+
+        self.assertEquals(Position(-2, 0), new_pos)
+
     
     def test_should_calculate_position_relative_to_other_point(self):
         pos = Position(4, 12)
@@ -35,42 +43,50 @@ class PositionTestCase(unittest.TestCase):
         self.assertEquals(Position(-6, 2), relative_pos)
 
 
-    def test_should_rotate_clockwise_around_origin_by_90_degrees(self):
+    def test_should_rotate_clockwise_by_90_degrees(self):
         pos = Position(0, 1)
 
-        rotated_pos = pos.rotated_around_origin(-90)
+        rotated_pos = pos.rotated(-90)
 
         self.assertEquals(Position(1, 0), rotated_pos.rounded())
 
 
-    def test_should_rotate_around_origin_by_180_degrees(self):
+    def test_should_rotate_by_180_degrees(self):
         pos = Position(0, 1)
 
-        rotated_pos = pos.rotated_around_origin(-180)
+        rotated_pos = pos.rotated(-180)
 
         self.assertEquals(Position(0, -1), rotated_pos.rounded())
 
 
-    def test_should_rotate_clockwise_around_origin_by_360_degrees(self):
+    def test_should_rotate_clockwise_by_360_degrees(self):
         pos = Position(0, 1)
 
-        rotated_pos = pos.rotated_around_origin(360)
+        rotated_pos = pos.rotated(360)
 
         self.assertEquals(Position(0, 1), rotated_pos.rounded())
 
 
-    def test_should_rotate_anticlockwise_around_origin_by_90_degrees(self):
+    def test_should_rotate_anticlockwise_by_90_degrees(self):
         pos = Position(0, 1)
 
-        rotated_pos = pos.rotated_around_origin(90)
+        rotated_pos = pos.rotated(90)
 
         self.assertEquals(Position(-1, 0), rotated_pos.rounded())
 
 
-    def test_should_return_cross_product_with_other_point(self):
+    def test_should_add_to_other_point(self):
+        pos = Position(4, 5)
+        other_pos = Position(6, 7)
+
+        result = pos.add(other_pos)
+
+        self.assertEquals(Position(10, 12), result)
+
+    def test_should_return_dot_product_with_other_point(self):
         pos = Position(9, 12)
         other_pos = Position(2, -3)
 
-        cross_product = pos.cross_product(other_pos)
+        dot_product = pos.dot_product(other_pos)
 
-        self.assertEquals(Position(18, -36), cross_product)
+        self.assertEquals(Position(18, -36), dot_product)
