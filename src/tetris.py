@@ -5,6 +5,7 @@ from src.tetris_piece_factory import TetrisPieceFactory
 from src.console_interface import ConsoleInterface
 from src.tetris_errors import GameOverException
 from src.position import Position
+import time
 
 class Tetris:
     def __init__(self, user_interface):
@@ -20,14 +21,21 @@ class Tetris:
             self.user_interface.render_grid(grid)
 
             while not game_over:
-                moved_active_piece = active_piece.moved_down()
-
-                if self._piece_has_valid_move(active_piece, grid):
-                    movement_type = self.user_interface.get_player_move()
-                    moved_active_piece = active_piece.moved(movement_type)
+                if grid.object_has_valid_move(active_piece):
                     grid.remove_object(active_piece)
-                    grid.add_object(moved_active_piece)
-                    active_piece = moved_active_piece
+                    movement_type = self.user_interface.get_player_move()
+                    moved_piece = active_piece.moved(movement_type)
+                    if grid.can_add_object(moved_piece):
+                        active_piece = moved_piece
+
+                    moved_down_piece = active_piece.moved_down()
+                    if grid.can_add_object(moved_down_piece):
+                        grid.add_object(moved_down_piece)
+                    else:
+                        grid.add_object(active_piece)
+
+                    active_piece = moved_down_piece
+                    
                 else:
                     active_piece = self._add_new_piece_to_grid(grid, piece_factory)
 

@@ -2,6 +2,7 @@ from src.element import Element
 from src.element_type import ElementType
 from src.movement_type import MovementType
 from src.tetris_errors import InvalidMoveException
+from copy import copy
 
 class TetrisPiece:
     def __init__(self, layout, position):
@@ -18,10 +19,12 @@ class TetrisPiece:
         return self.moved(MovementType.DOWN)
 
     def moved(self, movement_type):
-        new_position = self.position
-        new_layout = self.layout
+        new_position = copy(self.position)
+        new_layout = copy(self.layout)
 
-        if movement_type == MovementType.DOWN:
+        if movement_type == MovementType.NONE:
+            pass
+        elif movement_type == MovementType.DOWN:
             new_position = self.position.translated(0, -1)
         elif movement_type == MovementType.LEFT:
             new_position = self.position.translated(-1, 0)

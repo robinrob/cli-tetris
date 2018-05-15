@@ -9,12 +9,14 @@ class ConsoleInterface:
         elif raw_input is "d":
             return MovementType.RIGHT
         elif raw_input is "w":
-            return MovementType.ROTATE_ANTICLOCKWISE,
+            return MovementType.ROTATE_ANTICLOCKWISE
         elif raw_input is "s":
             return MovementType.ROTATE_CLOCKWISE
+        elif raw_input is "":
+            return MovementType.NONE
 
     def _get_player_input(self):
-        allowed_inputs = ["a", "d", "w", "s"]
+        allowed_inputs = ["a", "d", "w", "s", ""]
         raw_input = None
         while raw_input not in allowed_inputs:
             print(f"Please choose from allowed inputs: {allowed_inputs}:\n")

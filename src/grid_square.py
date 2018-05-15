@@ -10,11 +10,11 @@ class GridSquare:
         else:
             return "*"
 
-    def is_empty(self):
-        return self._occupied_by is None
+    def is_empty(self, ignore_elements=[]):
+        return self._occupied_by is None or self._occupied_by in ignore_elements
 
     def fill_with(self, element):
-        self._occupied_by = element.type
+        self._occupied_by = element
 
     def clear(self):
         self._occupied_by = None

@@ -1,6 +1,7 @@
 from enum import Enum
 
 class MovementType(Enum):
+    NONE = 0
     DOWN = 1
     LEFT = 2
     RIGHT = 3
