@@ -65,3 +65,12 @@ class PositionTestCase(unittest.TestCase):
         rotated_pos = pos.rotated_around_origin(90)
 
         self.assertEquals(Position(-1, 0), rotated_pos.rounded())
+
+
+    def test_should_return_cross_product_with_other_point(self):
+        pos = Position(9, 12)
+        other_pos = Position(2, -3)
+
+        cross_product = pos.cross_product(other_pos)
+
+        self.assertEquals(Position(18, -36), cross_product)

@@ -1,0 +1,2 @@
+class PieceOutOfBoundsException(Exception):
+    pass

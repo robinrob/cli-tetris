@@ -19,7 +19,7 @@ class Position:
     def relative_to(self, other_point):
         return Position(self.x - other_point.x, self.y - other_point.y)
 
-    def rotated_around_origin(self, degrees):
+    def rotated(self, degrees):
         rad = math.pi / 180 * degrees
 
         return Position(
@@ -27,9 +27,9 @@ class Position:
             self.x * math.sin(rad) + self.y * math.cos(rad)
         )
 
-    def rotated_around(self, degrees, pivot_pos):
+    def rotated_around_pivot(self, pivot_pos, degrees):
         rel_pos = self.relative_to(pivot_pos)
-        new_rel_pos = rel_pos.rotate_around_origin(degrees)
+        new_rel_pos = rel_pos.rotated(degrees)
 
         return Position(
             new_rel_pos.x + pivot_pos.x,
@@ -38,3 +38,7 @@ class Position:
 
     def rounded(self, places=0):
         return Position(round(self.x, places), round(self.y, places))
+
+
+    def cross_product(self, other_point):
+        return Position(self.x * other_point.x, self.y * other_point.y)
