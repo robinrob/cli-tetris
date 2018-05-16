@@ -20,7 +20,7 @@ class TetrisPiece:
         return self.moved(MovementType.DOWN)
 
     def moved(self, movement_type):
-        new_position = copy(self.position)
+        new_position = self.position
         new_layout = copy(self.layout)
 
         if movement_type == MovementType.NONE:
