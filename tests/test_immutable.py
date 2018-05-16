@@ -4,7 +4,6 @@ from src.immutable import Immutable
 
 
 class ImmutableTestCase(unittest.TestCase):
-
     def test_should_get_attr(self):
         obj = Immutable()
 
@@ -17,7 +16,7 @@ class ImmutableTestCase(unittest.TestCase):
 
         obj.test = 'test'
 
-        with self.assertRaises(AttributeError) as context:
+        with self.assertRaises(AttributeError):
             obj.test = 'new'
 
     def test_should_get_none_when_attr_is_not_set(self):

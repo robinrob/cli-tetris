@@ -53,7 +53,9 @@ class TetrisGrid:
 
             grid_square = self._get_grid_square(element.position)
             if not grid_square.is_empty():
-                raise ElementConflictException(f"Element conflicts with existing element in grid at {element.position.rounded()}")
+                raise ElementConflictException(
+                    f"Element conflicts with existing element in grid at {element.position.rounded()}"
+                )
 
             grid_square.fill_with(element)
 

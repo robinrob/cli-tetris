@@ -14,5 +14,3 @@ class TetrisPieceFactory(Immutable):
             random.choice(Layouts.ALL),
             position
         )
-
-    
