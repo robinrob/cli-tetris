@@ -1,6 +1,7 @@
 import random
 
 from src.tetris_grid import TetrisGrid
+from src.tetris_piece_factory import Layouts
 from src.tetris_piece_factory import TetrisPieceFactory
 from src.errors import GameOverException
 from src.position import Position
@@ -34,6 +35,7 @@ class Tetris(Immutable):
                         active_piece = moved_piece
 
                     # Check if piece can still be added after moving downwards after move
+                    # TODO: need to check fractions of downward move when MOVE_UNITS > 1
                     moved_piece = active_piece.moved_down()
                     if grid.can_add_object(moved_piece):
                         active_piece = moved_piece
@@ -51,10 +53,10 @@ class Tetris(Immutable):
 
     def _add_new_piece_to_grid(self, grid, piece_factory):
         xPos = random.randint(
-            grid.get_lowest_allowed_x_position() + TetrisPieceFactory.MAX_DIMENSION,
-            grid.get_highest_allowed_x_position() - TetrisPieceFactory.MAX_DIMENSION
+            grid.get_lowest_allowed_x_position() + Layouts.MAX_DIMENSION,
+            grid.get_highest_allowed_x_position() - Layouts.MAX_DIMENSION
         )
-        position = Position(xPos, grid.y_bounds[1] - TetrisPieceFactory.MAX_DIMENSION)
+        position = Position(xPos, grid.y_bounds[1] - Layouts.MAX_DIMENSION)
         piece = piece_factory.get_random_piece_at_position(position)
 
         if grid.can_add_object(piece):

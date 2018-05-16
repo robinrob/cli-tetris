@@ -1,4 +1,5 @@
 import math
+import hashlib
 
 from src.immutable import Immutable
 
@@ -12,6 +13,9 @@ class Position(Immutable):
 
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y
+
+    def __hash__(self):
+        return int(hashlib.md5(self.__repr__().encode()).hexdigest(), 16)
 
     def __repr__(self):
         return f"x: {self.x}, y: {self.y}"

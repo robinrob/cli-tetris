@@ -3,6 +3,7 @@ from src.element_type import ElementType
 from src.movement_type import MovementType
 from src.errors import InvalidMoveException
 from src.immutable import Immutable
+from settings import MOVE_UNITS
 
 
 class TetrisPiece(Immutable):
@@ -26,11 +27,11 @@ class TetrisPiece(Immutable):
         if movement_type == MovementType.NONE:
             pass
         elif movement_type == MovementType.DOWN:
-            new_position = self.position.translated(0, -1)
+            new_position = self.position.translated(0, -MOVE_UNITS)
         elif movement_type == MovementType.LEFT:
-            new_position = self.position.translated(-1, 0)
+            new_position = self.position.translated(-MOVE_UNITS, 0)
         elif movement_type == MovementType.RIGHT:
-            new_position = self.position.translated(1, 0)
+            new_position = self.position.translated(MOVE_UNITS, 0)
         elif movement_type == MovementType.ROTATE_CLOCKWISE:
             new_layout = self.layout.rotated(-90)
         elif movement_type == MovementType.ROTATE_ANTICLOCKWISE:

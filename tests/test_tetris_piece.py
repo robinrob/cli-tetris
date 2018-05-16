@@ -4,6 +4,7 @@ from tetris_piece import TetrisPiece
 from layout import Layout
 from position import Position
 from movement_type import MovementType
+from settings import MOVE_UNITS
 
 
 class TetrisPieceTestCase(unittest.TestCase):
@@ -35,8 +36,8 @@ class TetrisPieceTestCase(unittest.TestCase):
 
         new_piece = piece.moved_down()
 
-        self.assertEquals(Position(5, 4), new_piece.position)
-        self.assertEquals(Position(6, 5), new_piece.elements[2].position)
+        self.assertEquals(Position(5, 5 - MOVE_UNITS), new_piece.position)
+        self.assertEquals(Position(6, 6 - MOVE_UNITS), new_piece.elements[2].position)
 
     def test_should_move_left(self):
         layout = Layout([
@@ -49,8 +50,8 @@ class TetrisPieceTestCase(unittest.TestCase):
 
         new_piece = piece.moved(MovementType.LEFT)
 
-        self.assertEquals(Position(4, 5), new_piece.position)
-        self.assertEquals(Position(5, 6), new_piece.elements[2].position)
+        self.assertEquals(Position(5 - MOVE_UNITS, 5), new_piece.position)
+        self.assertEquals(Position(6 - MOVE_UNITS, 6), new_piece.elements[2].position)
 
     def test_should_move_right(self):
         layout = Layout([
@@ -63,8 +64,8 @@ class TetrisPieceTestCase(unittest.TestCase):
 
         new_piece = piece.moved(MovementType.RIGHT)
 
-        self.assertEquals(Position(6, 5), new_piece.position)
-        self.assertEquals(Position(7, 6), new_piece.elements[2].position)
+        self.assertEquals(Position(5 + MOVE_UNITS, 5), new_piece.position)
+        self.assertEquals(Position(6 + MOVE_UNITS, 6), new_piece.elements[2].position)
 
     def test_should_rotate_clockwise(self):
         layout = Layout([
