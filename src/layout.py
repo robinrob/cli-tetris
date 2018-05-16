@@ -8,21 +8,26 @@ class Layout(Immutable):
             'positions': positions
         })
 
+    def __repr__(self):
+        return f"layout: {self.positions}"
+
     def rotated(self, degrees):
         return Layout([position.rotated(degrees) for position in self.positions])
 
     def magnified(self, times):
-        positions = []
-        for position in self.positions:
-            positions.append(position)
-            for i in range(times):
-                positions.append(position.add(Position(i, 0)))
-                positions.append(position.add(Position(0, i)))
-                positions.append(position.add(Position(i, i)))
+        if times > 1:
+            positions = []
+            for position in self.positions:
+                positions.append(position)
+                positions.append(position.add(Position(1, 0)))
+                positions.append(position.add(Position(0, 1)))
+                positions.append(position.add(Position(1, 1)))
                 
-        return Layout(set(positions))
+            return Layout(set(positions)).magnified(times - 1)
+        else:
+            return Layout(set(self.positions))
 
-    def flipped_horizontally(self, layout):
+    def flipped_horizontally(self):
         positions = []
         for position in self.positions:
             positions.append(position.dot_product(Position(-1, 1)))

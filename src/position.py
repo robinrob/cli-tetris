@@ -18,7 +18,7 @@ class Position(Immutable):
         return int(hashlib.md5(self.__repr__().encode()).hexdigest(), 16)
 
     def __repr__(self):
-        return f"x: {self.x}, y: {self.y}"
+        return f"({self.x}, {self.y})"
 
     def translated(self, x, y):
         return Position(self.x + x, self.y + y)
