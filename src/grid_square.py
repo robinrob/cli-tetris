@@ -1,5 +1,3 @@
-from src.element_type import ElementType
-
 class GridSquare:
     def __init__(self):
         self._occupied_by = None

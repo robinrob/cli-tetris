@@ -1,8 +1,9 @@
 from src.element import Element
 from src.element_type import ElementType
 from src.movement_type import MovementType
-from src.tetris_errors import InvalidMoveException
+from src.errors import InvalidMoveException
 from copy import copy
+
 
 class TetrisPiece:
     def __init__(self, layout, position):

@@ -17,14 +17,12 @@ class PositionTestCase(unittest.TestCase):
 
         self.assertEquals(Position(4, 5), new_pos)
 
-
     def test_should_translate_by_3_2(self):
         pos = Position(4, 5)
 
         new_pos = pos.translated(3, 2)
 
         self.assertEquals(Position(7, 7), new_pos)
-
 
     def test_should_translate_by_minus_3_minus_2(self):
         pos = Position(1, 2)
@@ -33,7 +31,6 @@ class PositionTestCase(unittest.TestCase):
 
         self.assertEquals(Position(-2, 0), new_pos)
 
-    
     def test_should_calculate_position_relative_to_other_point(self):
         pos = Position(4, 12)
         other_pos = Position(10, 10)
@@ -42,14 +39,12 @@ class PositionTestCase(unittest.TestCase):
 
         self.assertEquals(Position(-6, 2), relative_pos)
 
-
     def test_should_rotate_clockwise_by_90_degrees(self):
         pos = Position(0, 1)
 
         rotated_pos = pos.rotated(-90)
 
         self.assertEquals(Position(1, 0), rotated_pos.rounded())
-
 
     def test_should_rotate_by_180_degrees(self):
         pos = Position(0, 1)
@@ -58,7 +53,6 @@ class PositionTestCase(unittest.TestCase):
 
         self.assertEquals(Position(0, -1), rotated_pos.rounded())
 
-
     def test_should_rotate_clockwise_by_360_degrees(self):
         pos = Position(0, 1)
 
@@ -66,14 +60,12 @@ class PositionTestCase(unittest.TestCase):
 
         self.assertEquals(Position(0, 1), rotated_pos.rounded())
 
-
     def test_should_rotate_anticlockwise_by_90_degrees(self):
         pos = Position(0, 1)
 
         rotated_pos = pos.rotated(90)
 
         self.assertEquals(Position(-1, 0), rotated_pos.rounded())
-
 
     def test_should_add_to_other_point(self):
         pos = Position(4, 5)

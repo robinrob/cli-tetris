@@ -11,7 +11,6 @@ class GridSquareTestCase(unittest.TestCase):
 
         self.assertTrue(grid_square.is_empty())
 
-
     def test_should_fill_with_element(self):
         grid_square = GridSquare()
         element = Element(ElementType.WALL)
@@ -19,7 +18,6 @@ class GridSquareTestCase(unittest.TestCase):
         grid_square.fill_with(element)
 
         self.assertFalse(grid_square.is_empty())
-
 
     def test_should_clear(self):
         grid_square = GridSquare()

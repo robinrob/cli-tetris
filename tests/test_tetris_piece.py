@@ -5,6 +5,7 @@ from layout import Layout
 from position import Position
 from movement_type import MovementType
 
+
 class TetrisPieceTestCase(unittest.TestCase):
     def test_should_initialise_elements_in_positions_according_to_layout(self):
         layout = Layout([
@@ -37,7 +38,6 @@ class TetrisPieceTestCase(unittest.TestCase):
         self.assertEquals(Position(5, 4), new_piece.position)
         self.assertEquals(Position(6, 5), new_piece.elements[2].position)
 
-    
     def test_should_move_left(self):
         layout = Layout([
             Position(0, 1),
@@ -51,8 +51,7 @@ class TetrisPieceTestCase(unittest.TestCase):
 
         self.assertEquals(Position(4, 5), new_piece.position)
         self.assertEquals(Position(5, 6), new_piece.elements[2].position)
-        
-    
+
     def test_should_move_right(self):
         layout = Layout([
             Position(0, 1),
@@ -66,7 +65,6 @@ class TetrisPieceTestCase(unittest.TestCase):
 
         self.assertEquals(Position(6, 5), new_piece.position)
         self.assertEquals(Position(7, 6), new_piece.elements[2].position)
-        
 
     def test_should_rotate_clockwise(self):
         layout = Layout([
@@ -84,7 +82,6 @@ class TetrisPieceTestCase(unittest.TestCase):
         self.assertEquals(Position(5, 4), new_piece.elements[1].position)
         self.assertEquals(Position(6, 4), new_piece.elements[2].position)
 
-    
     def test_should_rotate_anticlockwise(self):
         layout = Layout([
             Position(0, 1),

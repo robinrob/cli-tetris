@@ -1,5 +1,7 @@
-# BaseCase Tetris Architecture Challenge
+# CLI Tetris
+An implementation of Tetris that can be played in the terminal.
 
+## Dependencies
 This project has the following system dependencies:
 - Python 3
 
