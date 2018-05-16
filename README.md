@@ -6,7 +6,7 @@ This project has the following system dependencies:
 - Python 3
 
 ## Setup
-- `./setup.sh
+- `./setup.sh`
 
 ## Configuration
 To configure the game, modify `settings.py`
