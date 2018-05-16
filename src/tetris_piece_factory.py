@@ -3,9 +3,10 @@ import random
 from src.position import Position
 from src.layout import Layout
 from src.tetris_piece import TetrisPiece
+from src.immutable import Immutable
 
 
-class TetrisPieceFactory:
+class TetrisPieceFactory(Immutable):
     LAYOUTS = [
         # Layout([Position(0, 0)])
         # ****
@@ -59,6 +60,9 @@ class TetrisPieceFactory:
             max([pos.y for pos in layout.positions])
         ]) for layout in LAYOUTS
     ])
+
+    def __init__(self):
+        super(TetrisPieceFactory, self).__init__()
 
     def get_random_piece_at_position(self, position):
         return TetrisPiece(random.choice(TetrisPieceFactory.LAYOUTS), position)

@@ -1,7 +1,11 @@
 from src.movement_type import MovementType
+from src.immutable import Immutable
 
 
-class ConsoleInterface:
+class ConsoleInterface(Immutable):
+    def __init__(self):
+        super(ConsoleInterface, self).__init__()
+
     def get_player_move(self):
         raw_input = self._get_player_input()
 
@@ -26,6 +30,7 @@ class ConsoleInterface:
         return raw_input
 
     def render_grid(self, tetris_grid):
+        print(chr(27) + "[2J")
         display = ""
         for column in tetris_grid.grid_squares:
             for grid_square in column:

@@ -2,26 +2,26 @@ from src.element import Element
 from src.element_type import ElementType
 from src.movement_type import MovementType
 from src.errors import InvalidMoveException
-from copy import copy
+from src.immutable import Immutable
 
 
-class TetrisPiece:
+class TetrisPiece(Immutable):
     def __init__(self, layout, position):
-        self.layout = layout
-        if layout is None:
-            raise Exception("Layout should not be None")
-        self.position = position
-        self.elements = [
-            Element(ElementType.PIECE, position.add(elem_position))
-            for elem_position in layout.positions
-        ]
+        super(TetrisPiece, self).__init__(attrs_dict={
+            'layout': layout,
+            'position': position,
+            'elements': [
+                Element(ElementType.PIECE, position.add(elem_position))
+                for elem_position in layout.positions
+            ]
+        })
 
     def moved_down(self):
         return self.moved(MovementType.DOWN)
 
     def moved(self, movement_type):
         new_position = self.position
-        new_layout = copy(self.layout)
+        new_layout = self.layout
 
         if movement_type == MovementType.NONE:
             pass

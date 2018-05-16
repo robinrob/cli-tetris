@@ -49,11 +49,11 @@ class TetrisGrid:
     def add_object(self, object):
         for element in object.elements:
             if not self._position_within_bounds(element.position):
-                raise ElementOutOfBoundsException(f"Element is out of bounds of grid at {element.position}")
+                raise ElementOutOfBoundsException(f"Element is out of bounds of grid at {element.position.rounded()}")
 
             grid_square = self._get_grid_square(element.position)
             if not grid_square.is_empty():
-                raise ElementConflictException(f"Element conflicts with existing element in grid at {element.position}")
+                raise ElementConflictException(f"Element conflicts with existing element in grid at {element.position.rounded()}")
 
             grid_square.fill_with(element)
 
@@ -103,4 +103,4 @@ class TetrisGrid:
         return y_pos >= self._get_lowest_allowed_y_position() and y_pos <= self._get_highest_allowed_y_position()
 
     def _get_grid_square(self, position):
-        return self.grid_squares[int(self._size - 1 - position.y)][int(position.x)]
+        return self.grid_squares[int(self._size - 1 - position.rounded().y)][int(position.rounded().x)]
