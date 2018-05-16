@@ -5,11 +5,14 @@ from src.tetris_piece_factory import TetrisPieceFactory
 from src.errors import GameOverException
 from src.position import Position
 from settings import GRID_SIZE
+from src.immutable import Immutable
 
 
-class Tetris:
+class Tetris(Immutable):
     def __init__(self, user_interface):
-        self.user_interface = user_interface
+        super(Tetris, self).__init__(attrs_dict={
+            'user_interface': user_interface
+        })
 
     def play(self):
         game_over = False
