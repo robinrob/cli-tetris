@@ -4,6 +4,7 @@ from src.tetris_grid import TetrisGrid
 from src.tetris_piece_factory import TetrisPieceFactory
 from src.errors import GameOverException
 from src.position import Position
+from settings import GRID_SIZE
 
 
 class Tetris:
@@ -12,7 +13,7 @@ class Tetris:
 
     def play(self):
         game_over = False
-        grid = TetrisGrid(20)
+        grid = TetrisGrid(GRID_SIZE)
         piece_factory = TetrisPieceFactory()
 
         try:
