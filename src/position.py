@@ -5,7 +5,7 @@ from src.immutable import Immutable
 
 
 class Position(Immutable):
-    def __init__(self, x, y):
+    def __init__(self, x: int, y: int) -> None:
         super(Position, self).__init__(attrs_dict={
             'x': x,
             'y': y
