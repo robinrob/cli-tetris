@@ -1,8 +1,8 @@
 import unittest
 
-from grid_square import GridSquare
-from element import Element
-from element_type import ElementType
+from src.grid_square import GridSquare
+from src.element import Element
+from src.element_type import ElementType
 
 
 class GridSquareTestCase(unittest.TestCase):

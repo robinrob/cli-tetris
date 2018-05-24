@@ -1,9 +1,9 @@
 import unittest
 
-from tetris_piece import TetrisPiece
-from layout import Layout
-from position import Position
-from movement_type import MovementType
+from src.tetris_piece import TetrisPiece
+from src.layout import Layout
+from src.position import Position
+from src.movement_type import MovementType
 from settings import MOVE_UNITS
 
 
