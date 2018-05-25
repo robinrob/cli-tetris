@@ -7,7 +7,6 @@ class MatrixLayout(Layout):
         positions = []
         for i, col in enumerate(matrix):
             for j, cell in enumerate(col):
-                print(i, j)
                 if cell:
                     positions.append(Position(j, len(matrix) - i - 1))
 

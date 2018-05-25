@@ -81,15 +81,13 @@ class TetrisGridTestCase(unittest.TestCase):
 
     def test_object_should_have_valid_move(self):
         grid = TetrisGrid(10)
-        # Single element at (5, 5) should fit within wall bounds
         layout = Layout([
             Position(0, 0),
             Position(1, 0),
             Position(0, 1),
             Position(1, 1)
         ])
-        object = TetrisPiece(layout, Position(5, 5))
-        grid.add_object(object)
+        object = TetrisPiece(layout, Position(4, 8))
 
         has_valid_move = grid.object_has_valid_move(object)
 
@@ -97,21 +95,28 @@ class TetrisGridTestCase(unittest.TestCase):
 
     def test_object_should_have_valid_move_when_1_space_above_floor(self):
         grid = TetrisGrid(10)
-        # Single element at (5, 5) should fit within wall bounds
-        layout = Layout([Position(0, 0)])
-        object = TetrisPiece(layout, Position(5, 8))
-        grid.add_object(object)
+        layout = Layout([
+            Position(0, 0),
+            Position(1, 0),
+            Position(0, 1),
+            Position(1, 1)
+        ])
+        object = TetrisPiece(layout, Position(5, 1))
 
         has_valid_move = grid.object_has_valid_move(object)
 
         self.assertTrue(has_valid_move)
 
-    # def test_object_should_not_have_valid_move_when_already_on_floor(self):
-    #     grid = TetrisGrid(10)
-    #     # Single element at (5, 5) should fit within wall bounds
-    #     layout = Layout([Position(0, 0)])
-    #     object = TetrisPiece(layout, Position(5, 9))
+    def test_object_should_not_have_valid_move_when_already_on_floor(self):
+        grid = TetrisGrid(10)
+        layout = Layout([
+            Position(0, 0),
+            Position(1, 0),
+            Position(0, 1),
+            Position(1, 1)
+        ])
+        object = TetrisPiece(layout, Position(5, 0))
 
-    #     has_valid_move = grid.object_has_valid_move(object)
+        has_valid_move = grid.object_has_valid_move(object)
 
-    #     self.assertFalse(has_valid_move)
+        self.assertFalse(has_valid_move)

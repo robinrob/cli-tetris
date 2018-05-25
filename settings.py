@@ -9,8 +9,8 @@ PROJECT_ROOT = os.path.dirname(
     )
 )
 
-GRID_SIZE = 80
+GRID_SIZE = 20
 
-MOVE_UNITS = 2
+MOVE_UNITS = 1
 
 PIECE_SIZE = 1

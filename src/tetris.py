@@ -7,6 +7,7 @@ from src.errors import GameOverException
 from src.position import Position
 from settings import GRID_SIZE
 from src.immutable import Immutable
+from src.movement_type import MovementType
 
 
 class Tetris(Immutable):
@@ -19,37 +20,44 @@ class Tetris(Immutable):
         game_over = False
         grid = TetrisGrid(GRID_SIZE)
         piece_factory = TetrisPieceFactory()
+        self.user_interface.render_hello_message()
 
         try:
             active_piece = self._add_new_piece_to_grid(grid, piece_factory)
             self.user_interface.render_grid(grid)
 
             while not game_over:
+                grid.remove_object(active_piece)
+
+                # Check if piece can be be moved by player in-place
+                # Get player move and add piece in new position if valid move
+                moved = False
                 if grid.object_has_valid_move(active_piece):
-                    grid.remove_object(active_piece)
                     movement_type = self.user_interface.get_player_move()
-                    moved_piece = active_piece.moved(movement_type)
+                    if movement_type is not MovementType.NONE:
+                        moved_piece = active_piece.moved(movement_type)
 
-                    # Check if piece can be added after player move
-                    if grid.can_add_object(moved_piece):
-                        active_piece = moved_piece
+                        if grid.can_add_object(moved_piece):
+                            active_piece = moved_piece
+                            moved = True
 
-                    # Check if piece can still be added after moving downwards after move
-                    # TODO: need to check fractions of downward move when MOVE_UNITS > 1
-                    moved_piece = active_piece.moved_down()
-                    if grid.can_add_object(moved_piece):
-                        active_piece = moved_piece
-
-                    grid.add_object(active_piece)
+                # Check if piece can be moved down
+                # Check if piece can still be added after moving downwards after move
+                # TODO: need to check fractions of downward move when MOVE_UNITS > 1
+                moved_piece = active_piece.moved_down()
+                if grid.can_add_object(moved_piece):
                     active_piece = moved_piece
+                    moved = True
 
-                else:
+                grid.add_object(active_piece)
+
+                if not moved:
                     active_piece = self._add_new_piece_to_grid(grid, piece_factory)
 
                 self.user_interface.render_grid(grid)
 
         except GameOverException as e:
-            pass
+            self.user_interface.render_game_over_message(grid)
 
     def _add_new_piece_to_grid(self, grid, piece_factory):
         xPos = random.randint(

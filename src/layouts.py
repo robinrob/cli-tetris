@@ -3,25 +3,17 @@ from settings import PIECE_SIZE
 
 
 class Layouts:
+    L_LAYOUT_RIGHT = MatrixLayout([
+        [1, 0],
+        [1, 0],
+        [1, 1]
+    ])
     ALL = [
-        MatrixLayout([
-            [1, 1, 1],
-            [1, 0, 1],
-            [1, 1, 1]
-        ]),
         MatrixLayout([
             [1, 1, 1, 1]
         ]),
-        MatrixLayout([
-            [1, 0, 0],
-            [1, 0, 0],
-            [1, 1, 0]
-        ]),
-        MatrixLayout([
-            [1, 0, 0],
-            [1, 0, 0],
-            [1, 1, 0]
-        ]).flipped_horizontally(),
+        L_LAYOUT_RIGHT,
+        L_LAYOUT_RIGHT.flipped_horizontally(),
         MatrixLayout([
             [0, 1],
             [1, 1],

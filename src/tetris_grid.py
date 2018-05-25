@@ -59,27 +59,25 @@ class TetrisGrid:
 
             grid_square.fill_with(element)
 
-    def can_add_object(self, object, ignore_elements=[]):
+    def can_add_object(self, object):
         return all([
-            self._can_add_element(element, ignore_elements=ignore_elements)
+            self._can_add_element(element)
             for element in object.elements
         ])
 
-    def _can_add_element(self, element, ignore_elements=[]):
+    def _can_add_element(self, element):
         return (
             self._position_within_bounds(element.position) and
-            self._get_grid_square(element.position).is_empty(ignore_elements=ignore_elements)
+            self._get_grid_square(element.position).is_empty()
         )
 
     def remove_object(self, object):
         for element in object.elements:
             grid_square = self._get_grid_square(element.position)
-            if grid_square._occupied_by != ElementType.WALL:
-                grid_square.clear()
+            grid_square.clear()
 
     def object_has_valid_move(self, object):
         movement_types = [
-            MovementType.DOWN,
             MovementType.LEFT,
             MovementType.RIGHT,
             MovementType.ROTATE_CLOCKWISE,
@@ -87,7 +85,7 @@ class TetrisGrid:
         ]
         for movement_type in movement_types:
             moved_piece = object.moved(movement_type)
-            if self.can_add_object(moved_piece, ignore_elements=object.elements):
+            if self.can_add_object(moved_piece):
                 return True
 
         return False

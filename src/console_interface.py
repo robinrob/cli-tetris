@@ -1,3 +1,5 @@
+import sys
+
 from src.movement_type import MovementType
 from src.immutable import Immutable
 
@@ -24,18 +26,41 @@ class ConsoleInterface(Immutable):
         allowed_inputs = ["a", "d", "w", "s", ""]
         raw_input = None
         while raw_input not in allowed_inputs:
-            print(f"Please choose from allowed inputs: {allowed_inputs}:\n")
+            sys.stdout.write(f"Please choose from allowed inputs: {allowed_inputs}: ")
             raw_input = input()
 
         return raw_input
 
-    def render_grid(self, tetris_grid):
-        print(chr(27) + "[2J")
-        display = ""
+    def render_hello_message(self):
+        self._clear()
+        print("Welcome to Tetris!\n")
+
+        raw_input = None
+        while raw_input is not "":
+            raw_input = self._get_input_key("Enter")
+
+    def _get_input_key(self, key_label):
+        sys.stdout.write(f"Please press {key_label} to start: ")
+        return input()
+
+    def render_grid(self, tetris_grid, clear=True):
+        if clear:
+            self._clear()
+
+        display_contents = ""
         for column in tetris_grid.grid_squares:
             for grid_square in column:
-                display += str(grid_square)
+                display_contents += str(grid_square)
 
-            display += "\n"
+            display_contents += "\n"
 
-        print(display)
+        print(display_contents)
+
+    def render_game_over_message(self, grid):
+        self._clear()
+        print("Game Over!\n")
+        self.render_grid(grid, clear=False)
+
+    def _clear(self):
+        # pass
+        print(chr(27) + "[2J")
