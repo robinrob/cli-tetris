@@ -1,8 +1,12 @@
+"""Classes: Layouts."""
+
 from src.matrix_layout import MatrixLayout
 from settings import PIECE_SIZE
 
 
 class Layouts:
+    """Layouts is a dictionary of possible TetrisPiece layouts."""
+
     L_LAYOUT_RIGHT = MatrixLayout([
         [1, 0],
         [1, 0],

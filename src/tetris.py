@@ -1,3 +1,5 @@
+"""Classes: Tetris."""
+
 import random
 
 from src.tetris_grid import TetrisGrid
@@ -11,12 +13,22 @@ from src.movement_type import MovementType
 
 
 class Tetris(Immutable):
+    """
+    Tetris contains the game logic for CLI Tetris.
+
+    The game logic is totally independent of its user interface.
+
+    Tetris makes calls to its user interface to obtain user input and render the tetris board.
+    """
+
     def __init__(self, user_interface):
+        """Construct a new Tetris game with the given user interface."""
         super(Tetris, self).__init__(attrs_dict={
             'user_interface': user_interface
         })
 
     def play(self):
+        """Play a game of Tetris."""
         game_over = False
         grid = TetrisGrid(GRID_SIZE)
         piece_factory = TetrisPieceFactory()
