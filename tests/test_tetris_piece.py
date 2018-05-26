@@ -1,3 +1,5 @@
+"""Unit tests for TetrisPiece."""
+
 import unittest
 
 from src.tetris_piece import TetrisPiece
@@ -7,8 +9,8 @@ from src.movement_type import MovementType
 from settings import MOVE_UNITS
 
 
-class TetrisPieceTestCase(unittest.TestCase):
-    def test_should_initialise_elements_in_positions_according_to_layout(self):
+class TetrisPieceTestCase(unittest.TestCase):  # noqa: D101
+    def test_should_initialise_elements_in_positions_according_to_layout(self):  # noqa: D102
         layout = Layout([
             # Absolute position = (5, 6)
             Position(0, 1),
@@ -25,7 +27,7 @@ class TetrisPieceTestCase(unittest.TestCase):
         self.assertEquals(Position(6, 5), piece.elements[1].position)
         self.assertEquals(Position(6, 6), piece.elements[2].position)
 
-    def test_should_move_down(self):
+    def test_should_move_down(self):  # noqa: D102
         layout = Layout([
             Position(0, 1),
             Position(1, 0),
@@ -39,7 +41,7 @@ class TetrisPieceTestCase(unittest.TestCase):
         self.assertEquals(Position(5, 5 - MOVE_UNITS), new_piece.position)
         self.assertEquals(Position(6, 6 - MOVE_UNITS), new_piece.elements[2].position)
 
-    def test_should_move_left(self):
+    def test_should_move_left(self):  # noqa: D102
         layout = Layout([
             Position(0, 1),
             Position(1, 0),
@@ -53,7 +55,7 @@ class TetrisPieceTestCase(unittest.TestCase):
         self.assertEquals(Position(5 - MOVE_UNITS, 5), new_piece.position)
         self.assertEquals(Position(6 - MOVE_UNITS, 6), new_piece.elements[2].position)
 
-    def test_should_move_right(self):
+    def test_should_move_right(self):  # noqa: D102
         layout = Layout([
             Position(0, 1),
             Position(1, 0),
@@ -67,7 +69,7 @@ class TetrisPieceTestCase(unittest.TestCase):
         self.assertEquals(Position(5 + MOVE_UNITS, 5), new_piece.position)
         self.assertEquals(Position(6 + MOVE_UNITS, 6), new_piece.elements[2].position)
 
-    def test_should_rotate_clockwise(self):
+    def test_should_rotate_clockwise(self):  # noqa: D102
         layout = Layout([
             Position(0, 1),
             Position(1, 0),
@@ -83,7 +85,7 @@ class TetrisPieceTestCase(unittest.TestCase):
         self.assertEquals(Position(5, 4), new_piece.elements[1].position)
         self.assertEquals(Position(6, 4), new_piece.elements[2].position)
 
-    def test_should_rotate_anticlockwise(self):
+    def test_should_rotate_anticlockwise(self):  # noqa: D102
         layout = Layout([
             Position(0, 1),
             Position(1, 0),

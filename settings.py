@@ -1,3 +1,5 @@
+"""Contains runtime settings for CLI Tetris."""
+
 import inspect
 import os
 

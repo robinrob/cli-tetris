@@ -1,3 +1,5 @@
+"""Classes: ConsoleInterface."""
+
 import sys
 
 from src.movement_type import MovementType
@@ -5,10 +7,13 @@ from src.immutable import Immutable
 
 
 class ConsoleInterface(Immutable):
-    def __init__(self):
+    """ConsoleInterface presents a console interface to the user for input and rendering."""
+
+    def __init__(self):   # noqa: D107
         super(ConsoleInterface, self).__init__()
 
     def get_player_move(self):
+        """Prompt the user for input and return the corresponding MovementType."""
         raw_input = self._get_player_input()
 
         if raw_input is "a":
@@ -32,6 +37,7 @@ class ConsoleInterface(Immutable):
         return raw_input
 
     def render_hello_message(self):
+        """Display the welcome message for CLI Tetris."""
         self._clear()
         print("Welcome to Tetris!\n")
 
@@ -44,6 +50,7 @@ class ConsoleInterface(Immutable):
         return input()
 
     def render_grid(self, tetris_grid, clear=True):
+        """Render the Tetris grid."""
         if clear:
             self._clear()
 
@@ -57,6 +64,7 @@ class ConsoleInterface(Immutable):
         print(display_contents)
 
     def render_game_over_message(self, grid):
+        """Display the game over message."""
         self._clear()
         print("Game Over!\n")
         self.render_grid(grid, clear=False)

@@ -1,3 +1,5 @@
+"""Classes: TetrisGrid."""
+
 from src.grid_square import GridSquare
 from src.element import Element
 from src.element_type import ElementType
@@ -8,9 +10,12 @@ from src.errors import ElementConflictException
 
 
 class TetrisGrid:
+    """Maintains the state of the Tetris board."""
+
     WALL_THICKNESS = 1
 
     def __init__(self, size):
+        """Construct a square TetrisGrid with the given size."""
         self._size = size
         self.x_bounds = (0, size - 1)
         self.y_bounds = (0, size - 1)
@@ -35,9 +40,11 @@ class TetrisGrid:
             self._get_grid_square(Position(col_num, self.y_bounds[0])).fill_with(Element(ElementType.WALL))
 
     def get_lowest_allowed_x_position(self):
+        """Return the minimum x coordinate of this grid."""
         return self.x_bounds[0] + TetrisGrid.WALL_THICKNESS
 
     def get_highest_allowed_x_position(self):
+        """Return the maximum x coordinate of this grid."""
         return self.x_bounds[1] - TetrisGrid.WALL_THICKNESS
 
     def _get_lowest_allowed_y_position(self):
@@ -47,6 +54,7 @@ class TetrisGrid:
         return self.y_bounds[1] - TetrisGrid.WALL_THICKNESS
 
     def add_object(self, object):
+        """Add the given game object to the grid."""
         for element in object.elements:
             if not self._position_within_bounds(element.position):
                 raise ElementOutOfBoundsException(f"Element is out of bounds of grid at {element.position.rounded()}")
@@ -60,6 +68,7 @@ class TetrisGrid:
             grid_square.fill_with(element)
 
     def can_add_object(self, object):
+        """Determine whether the given object can be added to the grid."""
         return all([
             self._can_add_element(element)
             for element in object.elements
@@ -72,11 +81,13 @@ class TetrisGrid:
         )
 
     def remove_object(self, object):
+        """Remove the given object from the grid."""
         for element in object.elements:
             grid_square = self._get_grid_square(element.position)
             grid_square.clear()
 
     def object_has_valid_move(self, object):
+        """Determine whether the given object has any possible valid moves at its position."""
         movement_types = [
             MovementType.LEFT,
             MovementType.RIGHT,

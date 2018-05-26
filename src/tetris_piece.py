@@ -1,3 +1,5 @@
+"""Classes: Tetris Piece."""
+
 from src.element import Element
 from src.element_type import ElementType
 from src.movement_type import MovementType
@@ -7,7 +9,10 @@ from settings import MOVE_UNITS
 
 
 class TetrisPiece(Immutable):
+    """Represents a Tetris piece."""
+
     def __init__(self, layout, position):
+        """Construct a TetrisPiece using the given Layout located at the given Position."""
         super(TetrisPiece, self).__init__(attrs_dict={
             'layout': layout,
             'position': position,
@@ -18,9 +23,11 @@ class TetrisPiece(Immutable):
         })
 
     def moved_down(self):
+        """Return a new version of this TetrisPiece translated downwards by one unit."""
         return self.moved(MovementType.DOWN)
 
     def moved(self, movement_type):
+        """Return a new version of this TetrisPiece moved according to the given MovementType."""
         new_position = self.position
         new_layout = self.layout
 
