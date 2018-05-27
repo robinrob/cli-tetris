@@ -7,9 +7,9 @@ class GridSquare:
     """
     GridSquare represents a single square of the Tetris board and can be filled and cleared.
 
-    GridSquare is effectively a 'unit' of game state.
+    GridSquare is effectively a 'unit' of game state and is the only mutable object in the project.
 
-    When GridSquare is occupied, it maintains a reference to the Element occupying it.
+    When GridSquare is occupied, it maintains a reference to the ElementType of the Element occupying it.
     """
 
     def __init__(self):

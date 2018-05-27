@@ -17,7 +17,7 @@ class TetrisGrid(Immutable):
 
     def __init__(self, size):
         """Construct a square TetrisGrid with the given size."""
-        
+
         # Initialise grid squares
         grid_squares = []
         for column_index in range(0, size):
