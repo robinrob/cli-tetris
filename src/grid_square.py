@@ -1,5 +1,7 @@
 """Classes: GridSquare."""
 
+from src.element_type import ElementType
+
 
 class GridSquare:
     """
@@ -12,7 +14,7 @@ class GridSquare:
 
     def __init__(self):
         """Construct an empty GridSquare."""
-        self.occupied_by = None
+        self.occupied_by = ElementType.NONE
 
     def __repr__(self):
         """Generate text representation of this GridSquare."""
@@ -23,12 +25,12 @@ class GridSquare:
 
     def is_empty(self, ignore_elements=[]):
         """Indicate whether the GridSquare is empty."""
-        return self.occupied_by is None or self.occupied_by in ignore_elements
+        return self.occupied_by is ElementType.NONE or self.occupied_by in ignore_elements
 
     def fill_with(self, element):
         """Fill this GridSquare with the given Element."""
-        self.occupied_by = element
+        self.occupied_by = element.type
 
     def clear(self):
         """Clear this GridSquare."""
-        self.occupied_by = None
+        self.occupied_by = ElementType.NONE
