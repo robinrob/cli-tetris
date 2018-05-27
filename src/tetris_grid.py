@@ -7,28 +7,33 @@ from src.position import Position
 from src.movement_type import MovementType
 from src.errors import ElementOutOfBoundsException
 from src.errors import ElementConflictException
+from src.immutable import Immutable
 
 
-class TetrisGrid:
+class TetrisGrid(Immutable):
     """Maintains the state of the Tetris board."""
 
     WALL_THICKNESS = 1
 
     def __init__(self, size):
         """Construct a square TetrisGrid with the given size."""
-        self._size = size
-        self.x_bounds = (0, size - 1)
-        self.y_bounds = (0, size - 1)
-
-        # List of rows
-        self.grid_squares = []
+        
         # Initialise grid squares
+        grid_squares = []
         for column_index in range(0, size):
             column = []
             for row_index in range(0, size):
                 column.append(GridSquare())
-            self.grid_squares.append(column)
+            grid_squares.append(column)
 
+        super(TetrisGrid, self).__init__(attrs_dict={
+            "_size": size,
+            "x_bounds": (0, size - 1),
+            "y_bounds": (0, size - 1),
+            "grid_squares": grid_squares
+        })
+
+        # Populate grid with fixed elements
         for row_num in range(*self.y_bounds):
             # Left Wall
             self._get_grid_square(Position(self.x_bounds[0], row_num)).fill_with(Element(ElementType.WALL))
